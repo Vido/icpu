@@ -18,64 +18,64 @@ def format_query(table, rows, reals_indexes):
         q += str(value) + ","
 
     query = q[:-1] + ");"
-
     return query
 
-conn = sqlite3.connect('db')
-c = conn.cursor()
+if __name__ == '__main__':
 
-print 'data/SEGMENTOS_BRASILIA_T_DEFEITO.csv ...'
+    conn = sqlite3.connect('db')
+    c = conn.cursor()
 
-with open('data/SEGMENTOS_BRASILIA_T_DEFEITO.csv', 'rb') as fp:
-    csvfp = csv.reader(fp, 'excel', delimiter = ';')
-    csvfp.next()
+    print 'data/SEGMENTOS_BRASILIA_T_DEFEITO.csv ...'
 
-    for line in csvfp:
-        try:
-            query = format_query("T_DEFEITOS", line, [3])
-            c.execute(query)
-        except Exception as e:
-            #print line
-            print query
-            print repr(e)
+    with open('data/SEGMENTOS_BRASILIA_T_DEFEITO.csv', 'rb') as fp:
+        csvfp = csv.reader(fp, 'excel', delimiter = ';')
+        csvfp.next()
 
-    conn.commit()
+        for line in csvfp:
+            try:
+                query = format_query("T_DEFEITOS", line, [3])
+                c.execute(query)
+            except Exception as e:
+                #print line
+                print query
+                print repr(e)
 
-print 'data/SEGMENTOS_BRASILIA_T_AVALIACAO.csv ...'
+        conn.commit()
 
-with open('data/SEGMENTOS_BRASILIA_T_AVALIACAO.csv', 'r') as fp:
-    csvfp = csv.reader(fp, 'excel', delimiter = ';')
-    csvfp.next()
+    print 'data/SEGMENTOS_BRASILIA_T_AVALIACAO.csv ...'
 
-    for line in csvfp:
-        try:
-            query = format_query("T_AVALIACAO", line, [6])
-            c.execute(query)
-        except Exception as e:
-            #print line
-            print query
-            print repr(e)
+    with open('data/SEGMENTOS_BRASILIA_T_AVALIACAO.csv', 'r') as fp:
+        csvfp = csv.reader(fp, 'excel', delimiter = ';')
+        csvfp.next()
 
-    conn.commit()
+        for line in csvfp:
+            try:
+                query = format_query("T_AVALIACAO", line, [6])
+                c.execute(query)
+            except Exception as e:
+                #print line
+                print query
+                print repr(e)
 
-
-print 'data/SEGMENTOS_BRASILIA_T_INVENTARIO.csv ...'
-
-with open('data/SEGMENTOS_BRASILIA_T_INVENTARIO.csv', 'r') as fp:
-    csvfp = csv.reader(fp, 'excel', delimiter = ';')
-    csvfp.next()
-
-    for line in csvfp:
-        try:
-            query = format_query("T_INVENTARIO", line, [])
-            c.execute(query)
-        except Exception as e:
-            #print line
-            print query
-            print repr(e)
-
-    conn.commit()
+        conn.commit()
 
 
-conn.close()
+    print 'data/SEGMENTOS_BRASILIA_T_INVENTARIO.csv ...'
+
+    with open('data/SEGMENTOS_BRASILIA_T_INVENTARIO.csv', 'r') as fp:
+        csvfp = csv.reader(fp, 'excel', delimiter = ';')
+        csvfp.next()
+
+        for line in csvfp:
+            try:
+                query = format_query("T_INVENTARIO", line, [])
+                c.execute(query)
+            except Exception as e:
+                #print line
+                print query
+                print repr(e)
+
+        conn.commit()
+
+    conn.close()
 
