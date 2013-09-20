@@ -82,5 +82,21 @@ if __name__ == '__main__':
 
         conn.commit()
 
-    conn.close()
+    print 'data/SEGMENTOS_BRASILIA_T_SEGPISTA.csv ...'
+    
+    with open('data/SEGMENTOS_BRASILIA_T_SEGPISTA.csv', 'r') as fp:
+        csvfp = csv.reader(fp, 'excel', delimiter = ';')
+        csvfp.next()
 
+        for line in csvfp:
+            try:
+                query = format_query("T_SEGPISTA", line, [])
+                c.execute(query)
+            except Exception as e:
+                #print line
+                print query
+                print repr(e)
+
+        conn.commit()
+
+    conn.close()

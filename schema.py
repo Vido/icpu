@@ -93,4 +93,30 @@ c.execute('''
     )'''
 )
 
+# T_SEGPISTA
+c.execute('''
+    CREATE TABLE t_segpista(
+        OBJECTID text,
+        SHAPE text,
+        CODIGO_SEGMENTO_PISTA text,
+        CodLog text,NomeLog text,
+        NomeSegPista text,
+        Principal text,
+        Complemento text,
+        CD_REG_ADM text,
+        TipoPavimento text,
+        TipoHierarquia text,
+        TipoVia text,
+        Status text,
+        Fonte text,
+        Dominio text,
+        SHAPE_Length text,
+        Enabled text,
+        Grid text,
+        Setor text,
+        ClasseFuncional text,
+        Ano_Construido text
+    )'''
+)
+
 conn.close()
