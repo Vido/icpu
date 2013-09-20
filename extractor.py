@@ -1,15 +1,19 @@
 import csv
 import sqlite3
 
+
 def format_query(table, rows, reals_indexes):
     q ="INSERT INTO %s VALUES (" % table
     for row, i in zip(rows, range(len(rows))):
         if i == len(rows)-1:
             break
-        
-        c_row = row.replace(',', '.') if ',' in row else row
-        c_row = c_row.replace('\n', ' ') if '\n' in c_row else c_row
-            
+      
+        try: 
+            c_row = row.replace(',', '.') if ',' in row else row
+            c_row = c_row.replace('\n', ' ') if '\n' in c_row else c_row
+        except TypeError as e:
+            pass     
+    
         if i not in reals_indexes:
             value = "'"+ c_row + "'"
         else:
@@ -19,6 +23,7 @@ def format_query(table, rows, reals_indexes):
 
     query = q[:-1] + ");"
     return query
+
 
 if __name__ == '__main__':
 
