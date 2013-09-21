@@ -12,8 +12,9 @@ def format_query(table, rows, reals_indexes):
             c_row = row.replace(',', '.') if ',' in row else row
             c_row = c_row.replace('\n', ' ') if '\n' in c_row else c_row
         except TypeError as e:
-            pass     
+            c_row = row   
     
+
         if i not in reals_indexes:
             value = "'"+ c_row + "'"
         else:
